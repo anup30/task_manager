@@ -10,9 +10,8 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/app.dart';
 
-/// solve Data vs data, before assignment submit
-// update_profile_screen: form validation and submit(done)
-// taskStatusCount card size decrease.
+// do: taskStatusCount card size decrease.
+// new_task_screen, fix: The private field _updateTaskStatusInProgress could be 'final'.
 void main(){
   runApp(const TaskManager());
 }

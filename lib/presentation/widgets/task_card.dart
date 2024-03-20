@@ -62,22 +62,22 @@ class _TaskCardState extends State<TaskCard> {
                   visible: _updateTaskStatusInProgress==false,
                   replacement: const CircularProgressIndicator(),
                   child: IconButton(
-                    padding: const EdgeInsets.all(0.1),
+                    padding: EdgeInsets.zero, //-------------------------------
                       onPressed: (){
                         _showUpdateStatusDialog(widget.taskItem.sId!);
                       },
-                      icon: const Icon(Icons.edit)
+                      icon: const Icon(Icons.edit,color: Colors.green,)
                   ),
                 ),
                 Visibility(
                   visible: _deleteTaskInProgress==false,
                   replacement: const CircularProgressIndicator(),
                   child: IconButton(
-                      padding: const EdgeInsets.all(0.1),
+                      padding:  EdgeInsets.zero, //------------------------------
                       onPressed: (){
                         _deleteTaskById(widget.taskItem.sId!);
                       },
-                      icon: const Icon(Icons.delete_outline)),
+                      icon: const Icon(Icons.delete_outline,color: Colors.red,)),
                 ),
               ],
             )

@@ -23,8 +23,8 @@ class NewTaskScreen extends StatefulWidget {
 class _NewTaskScreenState extends State<NewTaskScreen> {
   bool _getAllTaskCountByStatusInProgress = false;
   bool _getNewTaskListInProgress = false;
-  bool _deleteTaskInProgress = false;
-  bool _updateTaskStatusInProgress = false;
+  //bool _deleteTaskInProgress = false;
+  //bool _updateTaskStatusInProgress = false;
   CountByStatusWrapper _countByStatusWrapper = CountByStatusWrapper();
   TaskListWrapper _newTaskListWrapper = TaskListWrapper();
 
@@ -37,8 +37,6 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   void _getDataFromApis() async{
     _getAllTaskCountByStatus();
     _getAllNewTaskList();
-    //if(!mounted){return;}
-    //setState(() {}); // included in above functions.
   }
 
   @override
@@ -58,9 +56,9 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
             ),
             Expanded(
               child: Visibility(
-                visible: _getNewTaskListInProgress == false &&
+                visible: _getNewTaskListInProgress == false, /*&& //---------------------------- <<
                     _deleteTaskInProgress == false &&
-                    _updateTaskStatusInProgress == false,
+                    _updateTaskStatusInProgress == false,*/
                 replacement: const Center(
                   child: CircularProgressIndicator(),
                 ),
@@ -72,7 +70,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                     child: ListView.builder(
                       itemCount: _newTaskListWrapper.taskList?.length ?? 0,
                       itemBuilder: (context, index) {
-                        return TaskCard( // vertical scrolling cards ------------------------------
+                        return TaskCard( // vertical scrolling cards --------------------------------- <<
                           taskItem: _newTaskListWrapper.taskList![index],
                           refreshList: () {
                             _getDataFromApis();
@@ -153,15 +151,12 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       _getAllTaskCountByStatusInProgress = false;
       if(!mounted){return;}
       setState(() {});
-      //if (mounted) {
         showSnackBarMessage(
             context,
             response.errorMessage ??
                 'Get task count by status has been failed');
-      //}
     }
   }
-
   Future<void> _getAllNewTaskList() async {
     _getNewTaskListInProgress = true;
     if(!mounted){return;}
@@ -176,12 +171,10 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       _getNewTaskListInProgress = false;
       if(!mounted){return;}
       setState(() {});
-      //if (mounted) { // also checked above ^
         showSnackBarMessage(
             context,
             response.errorMessage ??
                 'Get new task list has been failed');
-      //}
     }
   }
 }
