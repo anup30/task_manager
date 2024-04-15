@@ -202,7 +202,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> { // <-------
     if(_pickedImage != null){
       //convert image to base64 first, before sending (multipart format - for big files)
       List<int> bytes= File(_pickedImage!.path).readAsBytesSync(); // import 'dart:io';
-      String photo = base64Encode(bytes);
+      photo = base64Encode(bytes);
       inputParams['photo']= photo;
     }
     final response = await NetworkCaller.postRequest(Urls.updateProfile, inputParams);
